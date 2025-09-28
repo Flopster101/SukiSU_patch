@@ -90,7 +90,7 @@ index 39779f1ba..bef45143c 100644
 +
  SYSCALL_DEFINE3(faccessat, int, dfd, const char __user *, filename, int, mode)
  {
-+#if defined(CONFIG_KSU) && !defined(CONFIG_KSU_MANUAL_HOOK)
++#if defined(CONFIG_KSU) && defined(CONFIG_KSU_MANUAL_HOOK)
 +	ksu_handle_faccessat(&dfd, &filename, &mode, NULL);
 +#endif
  	return do_faccessat(dfd, filename, mode, 0);
